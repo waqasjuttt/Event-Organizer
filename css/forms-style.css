@@ -1,0 +1,220 @@
+        
+            
+            .centered-form
+            {
+                margin-top: 100px;
+             /* width: 100%;*/ 
+            }
+            .centered-form .panel
+            {
+                background:rgba(255,255,255,0.8);
+                box-shadow: rgba(0,0,0,0.3)20px 20px 20px;
+                border-radius: 6px;
+            }
+            .panel-title
+            {
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                color: #333;
+                font-family: sans-serif;
+            }
+              .panel-body span
+              {
+                   color: red;
+                   font-size: 18px;
+                   font-weight: bold;
+                   margin-left: 4px;
+              }
+               #op
+              {
+                   color: blue;
+                   font-size: 16px;
+                   font-weight: bold;
+                   margin-left: 4px;
+              }
+             @media (max-width:500px)
+            {
+                 #op
+              {
+                  margin:0px;
+                 float:left;
+                 margin-top: -60px;
+              }
+            }
+          
+            .panel-body > form input[type=text]
+            {
+                 width: 75%;
+                 height: 45px;
+                 padding: 12px ;
+                 margin: 5px 0;
+                 display: inline-block;
+                 border: 1px solid #ccc;
+                 border-radius: 4px;
+                 box-sizing: border-box;
+            	 box-sizing: border-box;
+                 border: 1px solid green;
+                 border-radius: 4px;
+            }
+            .panel-body label
+            {
+                font-family: sans-serif;
+                font-size: 16px;
+                color:#000;
+            }
+          
+            #email
+            {
+                 width: 50%;
+                 height: 45px;
+                 padding: 12px ;
+                  
+                 margin: 8px 0;
+                 display: inline-block;
+                 border: 1px solid #ccc;
+                 border-radius: 4px;
+                 box-sizing: border-box;
+            	 box-sizing: border-box;
+                 border: 1px solid green;
+                 border-radius: 4px;
+            }
+             @media (max-width:500px)
+            {
+                .panel-body > form input[type=email]
+                {
+                  width:90%;
+                
+                }
+            }
+           
+            .panel-body > form  input[type=radio]
+            {
+                width: auto;
+                margin-left: 20px;
+                margin-top: 10px;
+            }
+           @media (max-width:500px)
+            {
+                .panel-body > form  input[type=radio]
+            {
+                margin-left:0px;
+            }
+            }
+            textArea
+            {
+                width:40%;
+                height:130px;
+                margin-left: 2%;
+                margin-top: -10px;
+            }
+            .text
+            {
+                margin-top: 30px;
+                float: left;
+            }
+            
+.panel-body select
+{
+	 width: 55%;
+         height: 45px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+	border: 1px solid black;
+    border-radius: 4px;
+}
+
+
+.btn-block
+{
+	/*margin-left:-35%;*/
+	padding:5px;
+	width:60%;
+	margin-top:10px;
+        align-content: center;
+        margin: auto;
+}
+.error
+{
+	margin-top:10px;
+}
+.panel-body span:nth-of-type(5)
+{
+	
+	/*border:1px solid black;*/
+	font-size:18px;
+	color:#933;
+	font-weight:bold;
+	margin-left:-35%;
+	
+}
+    #te
+              {
+                 color: blue;
+                 
+              }
+               @media (max-width:500px)
+            {
+                 #te
+              {
+                 color: blue;
+                 margin-left: -2px;
+              }
+            }
+            #ui
+            {
+                width:40%;
+             float:left;
+            }
+            @media (max-width:500px)
+            {
+                 #ui
+              {
+                 width: 90%;
+              }
+            }
+            #password
+            {
+                 width: 60%;
+                 height: 45px;
+                 padding: 12px ;
+                 margin: 8px 0;
+                 display: inline-block;
+                 border: 1px solid #ccc;
+                 border-radius: 4px;
+                 box-sizing: border-box;
+            	 box-sizing: border-box;
+                 border: 1px solid green;
+                 border-radius: 4px;
+            }
+           @media (max-width:500px)
+            {
+               #password
+            {
+                width: 50%;
+               /* padding:0px;
+                border-color: red;*/
+            }
+            }
+            .btn-info
+            {padding:5px;
+                width:60%;
+                margin-top:10px; 
+                align-content: center;
+               
+                color:red;
+            }
+            .btn-info
+            {padding:5px;
+                width:60%;
+                margin-top:10px; 
+                align-content: center;
+               
+                color:red;
+            }
+            
+          

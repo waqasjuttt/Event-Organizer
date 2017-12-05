@@ -1,0 +1,208 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+    margin: 0px;
+    padding: 0px;
+   font-family: sans-serif;
+   text-decoration: none;
+    display: block;
+    background-color: #000;
+   width: 100%;
+   overflow-x: hidden;
+}
+.error
+{
+    margin-top: 10px;
+}
+.bg-image
+{
+    /*background-color: #3e8f3e;*/
+    width: 100%;
+    background-image:url(../images/BG12.jpg);
+  background-repeat:no-repeat;
+    height: auto;
+   /* margin:auto;*/
+}
+.pheader
+{
+    margin-top: 0px;
+}
+#login
+{
+    margin-top: 15px;
+    margin-left: 30%;
+    
+}
+#login > span:nth-of-type(1)
+{
+    font-size: 16px;
+  font-weight: bold;
+  color:blue;
+}
+#login > span:nth-of-type(2) > a
+{
+    color:#F00;
+    font-family:Georgia, 'Times New Roman', Times, serif; 
+   font-size:16px;
+   text-decoration: none;
+}
+#login > span:nth-of-type(2) > a:hover
+{
+    font-size: 18px;
+    font-weight: bold;
+   -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+.btn:hover, 
+.btn:focus{
+ outline: none;
+  /*box-shadow: none;*/
+}
+.lg8 .col-lg-9
+{
+    height: 400px;
+}
+@media (max-width: 600px) {
+  .lg8 .col-xs-12
+{
+    height: auto;
+    margin: auto;
+}
+  }
+
+.navbar-toggle {
+  background-color: #000;
+}
+.navbar-toggle > .icon-bar
+
+{
+    display: block;
+    background-color: #FFF;
+}
+.item button:hover {
+  background: skyblue;
+}
+.pheader ul > li a
+{
+    font-size: 16px;
+   color:#FF6;
+   font-weight: bold;
+}
+.pheader ul > li a:hover
+{
+    font-size: 16px;
+   color:#F00;
+   font-weight: bold;
+ background-color:cyan;
+}
+ carousel-inner > item > img,
+   carousel-inner > item > a > img
+   {
+	   width:100%;
+	   margin:0px;
+   }
+   #sign > a:hover
+   {
+	   color:#C30;
+   font-weight:bold; 
+   font-family:Georgia, 'Times New Roman', Times, serif; 
+   font-size:18px;
+   }
+
+.title			
+{
+    margin-top:260px;
+    margin-left:18px;
+    color:#FFF;
+    font-size:24px;
+    font-weight:bold;
+}
+@media (max-width : 600px)
+{
+    .title{
+    margin-top:0px;
+    margin-left:0px;
+}
+}
+#header-border
+{
+    width:100%;
+    height: auto;
+    margin:0px;
+   background-color: #7d7e7d; /* Old browsers */
+background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 1%); /* FF3.6-15 */
+                                                               
+background: -webkit-linear-gradient(top, #7d7e7d 0%,#0e0e0e 1%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #7d7e7d 0%,#0e0e0e 1%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+}
+#header-border div
+{
+    margin-top: 10px;
+    color: #03F;
+    font-size: 14px;
+}
+#header-border div a
+{
+    color:#FFF;
+}
+#header-border div:nth-of-type(2) > img 
+{
+ height: 50px;
+ margin-top: -5px;
+}
+.col1
+{
+  border-top:6px solid #FF5400;
+}
+.col2
+{
+    border-top:6px solid #F2170C;
+}
+.col3
+{
+    border-top:6px solid #BE0000;
+}
+				
+
+footer > div:nth-of-type(1)
+{
+    background-color: darkgray;
+    width: 100%;
+}
+footer > div:nth-of-type(1) img
+{
+    width: 95%;
+}
+@media (max-width : 600px)
+{
+    footer > div:nth-of-type(1)
+{
+    background-color:white;
+}
+    footer > div:nth-of-type(1) img
+{
+    width: 100%;
+}
+}
+footer > .row:nth-of-type(2) div
+{
+    color:black;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+   /* margin-top: 5px;*/
+    padding: 5px;
+}
+@media(max-width : 600px )
+{
+    footer > .row:nth-of-type(2) div
+{
+    font-size: 14px;
+    padding: 3px;
+}
+}
