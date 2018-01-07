@@ -2,14 +2,17 @@
 	require_once 'DbOperation.php';
  
 $response = array(); 
+$arr = array();
  
 if($_SERVER['REQUEST_METHOD']=='POST'){
-	if (isset($_POST['email']) and isset($_POST['password'])) {
+	if (isset($_POST['email']) and isset($_POST['password']) and ($_POST['domain'])) {
 		$db = new DbOperations();
 
-		if ($db->userLogin($_POST['email'], $_POST['password'])) {
-			$user = $db->getUserByUsername($_POST['email']);
-			$response['error'] = false;
+		if ($db->userLogin($_POST['email'], $_POST['password'], $_POST['domain'])) {
+			$user = $db->getUserByEmail($_POST['email']);
+			
+                        $response['error'] = false;
+                        
 			$response['id'] = $user['id'];
 			$response['first_name'] = $user['first_name'];
 			$response['last_name'] = $user['last_name'];
@@ -18,17 +21,18 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         $response['cnic'] = $user['cnic'];
                         $response['date_of_birth'] = $user['date_of_birth'];
                         $response['geneder'] = $user['geneder'];
-                        $response['about'] = $user['about'];
-                        $response['telephone_number'] = $user['telephone_number'];
-                        $response['address'] = $user['address'];
-                        $response['active'] = $user['active'];
-                        $response['timestamp'] = $user['timestamp'];
-                        $response['ip_address'] = $user['ip_address'];
-                        $response['domain'] = $user['domain'];
                         $response['interests'] = unserialize($user['interests']);
+                        $response['address'] = $user['address'];
+                        $response['telephone_number'] = $user['telephone_number'];
+//                        $response['active'] = $user['active'];
+//                        $response['timestamp'] = $user['timestamp'];
+//                        $response['ip_address'] = $user['ip_address'];
+                        $response['about'] = $user['about'];
+                        $response['domain'] = $user['domain'];
+                        
 		}else{
 			$response['error'] = true;
-			$response['message'] = "Inavlid username or password";
+                        $response['message'] = "Inavlid Email or Password";
 		}
 	}else{
 		$response['error'] = true;

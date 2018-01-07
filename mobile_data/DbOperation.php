@@ -16,37 +16,29 @@
  
         /*CRUD -> C -> CREATE */
  
-        public function createUser($username, $pass, $email, $mobile){
-            if($this->isUserExist($username,$email,$mobile)){
+        public function createUser($first_name, $last_name, $email, $cnic, $mobile_number, $dob, $gender, $interests, $about, $telephone_number, $address, $pass){
+            if($this->isUserExist($cnic, $email, $address, $mobile_number, $telephone_number)){
                 return 0; 
             }else{
-                // if($con)
-                // {
-                //     $image = $_POST["image"];
-                //     $name = $_POST["name"];
-                //     $sql = "insert into imageinfo(username) values('$username')";
-                //     $upload_path = "UploadedData/$username.jpg";
-
-                //     if(mysqli_query($con,$sql))
-                //     {
-                //         file_put_contents($upload_path,base64_decode($image));
-                //         echo json_encode(array('response'=>'Image uploaded successfully'));
-                //     }
-                //     else
-                //     {
-                //         echo json_encode(array('response'=>'Image upload failed'));
-                //     }
-                // }
-                // else
-                // {
-                //     echo json_encode(array('response'=>'Image upload Failed'));
-                // }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 
+//                $act_code = md5(crypt(rand(), "aa"));
+//                $ip = $_SERVER['REMOTE_ADDR'];
+                
+//                $query =" INSERT INTO `customer_personal` (`first_name`, `last_name`, `email`, `cnic`, `mobile_number`, "
+//               . "`date_of_birth`, `geneder`, `interests`, `about`, `telephone_number`, `address`, `password`, "
+//                . "`active`, `reset_code`, `timestamp`, `ip_address`) VALUES "
+//                . "('$this->first_name','$this->last_name','$this->email','$this->cnic','$this->m_number',"
+//                . "'$this->date_of_birth','$this->geneder','".serialize($this->interests)."','$this->about',"
+//               . "'$this->telephone','$this->address','$this->profile_image',"
+//                . "'$this->password',0,'$act_code',NOW(),'$ip')";
+//                $result=$conn->query($query );
+        
+
+//                $timestamp = NOW();
+                $UserInterests = serialize($interests);                
                 $password = md5($pass);
-                $stmt = $this->con->prepare("INSERT INTO `promousers` (`id`, `username`, `password`, `email`, `mobile`) VALUES (NULL, ?, ?, ?, ?);");
-                $stmt->bind_param("ssss",$username,$password,$email,$mobile);
+                $stmt = $this->con->prepare("INSERT INTO `customer_personal` (`id`, `first_name`, `last_name`, `email`, `cnic`, `mobile_number`, `date_of_birth`, `geneder`, `interests`, `about`, `telephone_number`, `address`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                $stmt->bind_param("ssssssssssss",$first_name, $last_name, $email, $cnic, $mobile_number, $dob, $gender, $UserInterests, $about, $telephone_number, $address, $password);
  
                 if($stmt->execute()){
                     return 1; 
@@ -55,12 +47,27 @@
                 }
             }
         }
+        
+        public function getUserByEmail($email){
+            $stmt = $this->con->prepare("SELECT * FROM customer_personal WHERE email =?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        }
+ 
+        private function isUserExist($cnic, $email, $address, $mobile_number, $telephone_number){
+            $stmt = $this->con->prepare("SELECT id FROM customer_personal WHERE cnic = ? OR email = ? OR address = ? OR mobile_number = ? OR telephone_number = ?");
+            $stmt->bind_param("sssss", $cnic, $email, $address, $mobile_number, $telephone_number);
+            $stmt->execute(); 
+            $stmt->store_result(); 
+            return $stmt->num_rows > 0; 
+        }
 
-        public function userLogin($email,$pass){
+        public function userLogin($email,$pass,$domain){
             $password = md5($pass);
             $stmt = $this->con->prepare("SELECT id FROM customer_personal WHERE email = ? 
-                AND password = ?");
-            $stmt->bind_param("ss",$email,$password);
+                AND password = ? AND domain = ?");
+            $stmt->bind_param("sss",$email,$password,$domain);
             $stmt->execute();
             $stmt->store_result();
             return $stmt->num_rows > 0;
@@ -73,20 +80,40 @@
             $stmt->store_result();
             return $stmt->num_rows > 0;
         }
-
-        public function getUserByUsername($email){
-            $stmt = $this->con->prepare("SELECT * FROM customer_personal WHERE email =?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            return $stmt->get_result()->fetch_assoc();
-        }
- 
-        private function isUserExist($username, $email, $mobile){
-            $stmt = $this->con->prepare("SELECT id FROM customer_personal WHERE username = ? OR email = ? OR mobile = ?");
-            $stmt->bind_param("sss", $username, $email, $mobile);
+        
+        private function isEmailExist($email){
+            $stmt = $this->con->prepare("SELECT id FROM customer_personal WHERE email = ?");
+            $stmt->bind_param("s",$email);
             $stmt->execute(); 
             $stmt->store_result(); 
             return $stmt->num_rows > 0; 
+        }
+        
+        public function isEmailExistForForgetPassword($email){
+            if($this->isEmailExist($email)){
+                return 1; 
+            }else{        
+               return 0;
+            }
+        }
+        
+        public function createNewPassword($email, $pass)
+        {
+            if($this->isEmailExistForForgetPassword($email)){
+                $password = md5($pass);
+                $stmt = $this->con->prepare("UPDATE customer_personal SET password = ? WHERE email = ?");
+                $stmt->bind_param("ss",$password, $email);
+                if($stmt->execute()){
+                    return 1;
+                }else{
+                    return 2;
+
+                }
+            }
+            else
+            { 
+                return 0; 
+            }           
         }
 }
 ?>
