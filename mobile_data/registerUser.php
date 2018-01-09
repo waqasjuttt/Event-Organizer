@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         }
         else if($result == 0){
             $response['error'] = true; 
-            $response['message'] = "It seems you are already registered, please choose a different CNIC, Email address, Home Address, Mobile Number and Telephone Number";
+            $response['message'] = "It seems you are already registered, please choose a different CNIC or Email address";
         }
     }
     else{
