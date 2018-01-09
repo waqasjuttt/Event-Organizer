@@ -55,9 +55,9 @@
             return $stmt->get_result()->fetch_assoc();
         }
  
-        private function isUserExist($cnic, $email, $address, $mobile_number, $telephone_number){
-            $stmt = $this->con->prepare("SELECT id FROM customer_personal WHERE cnic = ? OR email = ? OR address = ? OR mobile_number = ? OR telephone_number = ?");
-            $stmt->bind_param("sssss", $cnic, $email, $address, $mobile_number, $telephone_number);
+        private function isUserExist($cnic, $email){
+            $stmt = $this->con->prepare("SELECT id FROM customer_personal WHERE cnic = ? OR email = ? ");
+            $stmt->bind_param("ss", $cnic, $email);
             $stmt->execute(); 
             $stmt->store_result(); 
             return $stmt->num_rows > 0; 
