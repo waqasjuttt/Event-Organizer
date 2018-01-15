@@ -17,7 +17,7 @@
         /*CRUD -> C -> CREATE */
  
         public function createUser($first_name, $last_name, $email, $cnic, $mobile_number, $dob, $gender, $interests, $about, $telephone_number, $address, $pass){
-            if($this->isUserExist($cnic, $email, $address, $mobile_number, $telephone_number)){
+            if($this->isUserExist($cnic, $email)){
                 return 0; 
             }else{
                 
@@ -71,14 +71,6 @@
             $stmt->execute();
             $stmt->store_result();
             return $stmt->num_rows > 0;
-        }    
-
-        public function EditUser($username,$mobile,$email){
-            $stmt = $this->con->prepare("SELECT * FROM customer_personal WHERE username = ? OR mobile = ? OR email = ?");
-            $stmt->bind_param("sss",$username,$mobile,$email);
-            $stmt->execute();
-            $stmt->store_result();
-            return $stmt->num_rows > 0;
         }
         
         private function isEmailExist($email){
@@ -107,13 +99,24 @@
                     return 1;
                 }else{
                     return 2;
-
                 }
             }
             else
             { 
                 return 0; 
             }           
+        }
+        
+        public function EditUser($id, $first_name, $last_name, $email, $cnic, $mobile_number, $dob, $gender, $interests, $about, $telephone_number, $address)
+        {
+            $UserInterests = serialize($interests);
+            $stmt = $this->con->prepare("UPDATE customer_personal SET first_name = ?, last_name = ?, email = ?, cnic = ?, mobile_number = ?, date_of_birth = ?, geneder = ?, interests = ?, about = ?, telephone_number = ?, address = ? WHERE id = ?");
+            $stmt->bind_param("ssssssssssss", $first_name, $last_name, $email, $cnic, $mobile_number, $dob, $gender, $UserInterests, $about, $telephone_number, $address, $id);
+            if($stmt->execute()){
+                return 1;
+            }else{
+                return 2;
+            }
         }
 }
 ?>
