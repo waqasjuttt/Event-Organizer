@@ -13,12 +13,12 @@ if($_SERVER['REQUEST_METHOD']=='POST')
             
             if($result == 1)
             {
-                $response['error'] = true; 
+                $response['error'] = false; 
                 $response['message'] = "Successfully Changed Password";
             }
             else
             {
-                $response['error'] = false;
+                $response['error'] = true;
                 $response['message'] = "Password not Updated, Check your Email Address";
             } 
         }
